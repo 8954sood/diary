@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.diary.R
 import com.example.diary.databinding.FragmentHomeBinding
 import com.example.diary.domain.adapter.HomeAdapter
-import com.example.diary.model.dao.DiaryDao
 import com.example.diary.model.db.DiaryDataBase
 import com.example.diary.model.repository.DiaryRepository
 import com.example.diary.usecase.diary.GetLocalDiaryUseCase

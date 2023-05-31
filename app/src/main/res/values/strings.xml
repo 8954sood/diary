@@ -3,4 +3,8 @@
     <string name="menu_home">홈</string>
     <string name="menu_ranking">랭킹</string>
     <string name="menu_profile">프로필</string>
+    <string name="add_title">일기장 만들기</string>
+    <string name="add_edit_Title">일기장의 제목을 입력하세요</string>
+    <string name="add_edit_content">일기장의 내용을 입력하세요</string>
+    <string name="add_edit_save">저장하기</string>
 </resources>

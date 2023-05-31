@@ -28,7 +28,6 @@ class HomeAdapter(
         if (diaryList != null && position < diaryList.size) {
             val diary = diaryList[position]
             holder.setTitle(diary.title!!)
-            Log.d(TAG, "onBindViewHolder: ${diary.createAt}")
             holder.setCrateAt(timeDisplay(diary.createAt))
             holder.initItemClickListener(diary, position)
         }

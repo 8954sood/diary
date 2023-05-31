@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_home"
+        android:title="@string/menu_home"
+        android:icon="@drawable/baseline_home_24"
+        />
+    <item
+        android:id="@+id/menu_ranking"
+        android:title="@string/menu_ranking"
+        android:icon="@drawable/baseline_format_list_numbered_24"
+        />
+    <item
+        android:id="@+id/menu_profile"
+        android:title="@string/menu_profile"
+        android:icon="@drawable/baseline_account_circle_24"
+        />
+</menu>

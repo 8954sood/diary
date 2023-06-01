@@ -7,4 +7,7 @@
     <string name="add_edit_Title">일기장의 제목을 입력하세요</string>
     <string name="add_edit_content">일기장의 내용을 입력하세요</string>
     <string name="add_edit_save">저장하기</string>
+    <string name="editTitle">일기장 수정</string>
+    <string name="editSave">저장하기</string>
+    <string name="editCancel">취소하기</string>
 </resources>

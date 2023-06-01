@@ -9,12 +9,13 @@ import com.example.diary.domain.fragment.HomeFragment.Companion.TAG
 import com.example.diary.model.entity.Diary
 import com.example.diary.utiles.Utiles.Companion.timeDisplay
 import com.example.diary.databinding.ItemHomeBinding
-import java.util.*
-import java.util.concurrent.TimeUnit
+import com.example.diary.domain.activity.HomeClickListener
+import com.example.diary.domain.activity.diaryDialog
 
 
 class HomeAdapter(
-    private val diaryList: MutableLiveData<List<Diary>>
+    private val diaryList: MutableLiveData<List<Diary>>,
+    private val clickListener: HomeClickListener
     ): RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -42,6 +43,7 @@ class HomeAdapter(
     override fun getItemCount(): Int {
         return diaryList.value?.size ?: 0
     }
+
     inner class HomeViewHolder(private var binding: ItemHomeBinding): RecyclerView.ViewHolder(binding.root) {
         fun setTitle(title: String) {
             binding.checkbox.text = title
@@ -52,10 +54,16 @@ class HomeAdapter(
         fun initItemClickListener(diary: Diary, position: Int) {
             with (binding) {
                 checkbox.setOnClickListener {
-                    Log.d(TAG, "initItemClickListener: 오픈")
+                    Log.d(TAG, "initItemClickListener: open called")
                 }
                 btnEdit.setOnClickListener {
-                    Log.d(TAG, "initItemClickListener: 히히")
+                    Log.d(TAG, "initItemClickListener: edit called")
+                    clickListener.onEditBtnClick(diary, position)
+
+                }
+                btnDelete.setOnClickListener {
+                    Log.d(TAG, "initItemClickListener: delete called")
+
                 }
             }
             

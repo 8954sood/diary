@@ -24,10 +24,20 @@
             android:text="밥먹기"/>
         <ImageButton
             android:id="@+id/btn_edit"
-            app:layout_constraintEnd_toStartOf="@id/create_at"
+            app:layout_constraintEnd_toStartOf="@id/btn_delete"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:src="@drawable/baseline_edit_24"
+            android:contentDescription="edit_diary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <ImageButton
+            android:id="@+id/btn_delete"
+            app:layout_constraintEnd_toStartOf="@id/create_at"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/baseline_delete_24"
             android:contentDescription="edit_diary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

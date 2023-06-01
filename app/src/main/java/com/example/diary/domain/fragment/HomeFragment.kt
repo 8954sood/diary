@@ -12,8 +12,11 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.diary.R
 import com.example.diary.databinding.FragmentHomeBinding
+import com.example.diary.domain.activity.HomeClickListener
+import com.example.diary.domain.activity.diaryDialog
 import com.example.diary.domain.adapter.HomeAdapter
 import com.example.diary.model.db.DiaryDataBase
+import com.example.diary.model.entity.Diary
 import com.example.diary.model.repository.DiaryRepository
 import com.example.diary.usecase.diary.GetLocalDiaryUseCase
 import com.example.diary.usecase.factory.HomeViewModelFactory
@@ -25,7 +28,7 @@ import com.example.diary.viewModel.HomeViewModel
 
 class HomeFragment(
     private val repository: DiaryRepository
-) : Fragment() { // 프래그먼트의 UI와 동작을 구현합니다.
+) : Fragment(), HomeClickListener { // 프래그먼트의 UI와 동작을 구현합니다.
     companion object {
         const val TAG : String = "로그"
         fun newInstance(context: Context): HomeFragment {
@@ -37,6 +40,7 @@ class HomeFragment(
     private val viewModel: HomeViewModel by viewModels {
         HomeViewModelFactory(GetLocalDiaryUseCase(repository))
     }
+    private lateinit var homeClickListener: HomeClickListener
     private lateinit var binding: FragmentHomeBinding
 //    private val viewModel: HomeFragmentViewModel by viewModels()
     // 메모리에 올라갔을 떄
@@ -49,6 +53,7 @@ class HomeFragment(
     override fun onAttach(context: Context) {
         super.onAttach(context)
         Log.d(TAG, "HomeFragment - onAttach() Called")
+
     }
     // 뷰가 생성되었을 때
     // 프레그먼트와 레이아웃을 연결시켜주는 부분
@@ -67,7 +72,8 @@ class HomeFragment(
 //        )
         viewModel.diaryList.observe(viewLifecycleOwner) { diaries ->
             var ls = viewModel.diaryList
-            binding.homeRecycler.adapter = HomeAdapter(ls)
+            // this로 넘겨줘야 클릭이 이쪽 이벤트로 넘어옴 (왜? 자신의 클릴리스너부모를 갖다주는거기에
+            binding.homeRecycler.adapter = HomeAdapter(ls, this)
         }
         binding.homeRecycler.layoutManager = LinearLayoutManager(activity)
 
@@ -86,5 +92,11 @@ class HomeFragment(
 //             다이어리 리스트 업데이트될 때 처리
 //        }
     }
+    override fun onEditBtnClick(diary: Diary, position: Int) {
+        // rrequireContext 을 통해 context가 null이 아닐 수 있음을 알림
+        val dialog: diaryDialog by lazy { diaryDialog(context = requireContext()) }
+        dialog.show()
+    }
+
 
 }

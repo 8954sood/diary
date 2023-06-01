@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.diary.R
 import com.example.diary.databinding.FragmentAddBinding
+import com.example.diary.domain.activity.HomeClickListener
 import com.example.diary.model.db.DiaryDataBase
 import com.example.diary.model.entity.Diary
 import com.example.diary.model.repository.DiaryRepository
@@ -43,6 +44,7 @@ class AddFragment(private val repository: DiaryRepository
     override fun onAttach(context: Context) {
         super.onAttach(context)
         Log.d(TAG, "AddFragment - onAttach() Called")
+
     }
     // 뷰가 생성되었을 때
     // 프레그먼트와 레이아웃을 연결시켜주는 부분

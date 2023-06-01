@@ -8,12 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.diary.R
 import com.example.diary.databinding.FragmentHomeBinding
+import com.example.diary.domain.activity.DiaryClickListner
 import com.example.diary.domain.activity.HomeClickListener
-import com.example.diary.domain.activity.diaryDialog
+import com.example.diary.domain.activity.DiaryDialog
 import com.example.diary.domain.adapter.HomeAdapter
 import com.example.diary.model.db.DiaryDataBase
 import com.example.diary.model.entity.Diary
@@ -28,7 +31,8 @@ import com.example.diary.viewModel.HomeViewModel
 
 class HomeFragment(
     private val repository: DiaryRepository
-) : Fragment(), HomeClickListener { // 프래그먼트의 UI와 동작을 구현합니다.
+) : Fragment(), HomeClickListener, DiaryClickListner { // 프래그먼트의 UI와 동작을 구현합니다.
+
     companion object {
         const val TAG : String = "로그"
         fun newInstance(context: Context): HomeFragment {
@@ -40,8 +44,9 @@ class HomeFragment(
     private val viewModel: HomeViewModel by viewModels {
         HomeViewModelFactory(GetLocalDiaryUseCase(repository))
     }
-    private lateinit var homeClickListener: HomeClickListener
+//    private lateinit var homeClickListener: HomeClickListener
     private lateinit var binding: FragmentHomeBinding
+    private lateinit var dialog: DiaryDialog // by lazy { DiaryDialog(context = requireContext(), this) }
 //    private val viewModel: HomeFragmentViewModel by viewModels()
     // 메모리에 올라갔을 떄
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -94,8 +99,20 @@ class HomeFragment(
     }
     override fun onEditBtnClick(diary: Diary, position: Int) {
         // rrequireContext 을 통해 context가 null이 아닐 수 있음을 알림
-        val dialog: diaryDialog by lazy { diaryDialog(context = requireContext()) }
+        dialog = DiaryDialog(context = requireContext(), this, diary)
+        Log.d(TAG, "onEditBtnClick: called")
         dialog.show()
+    }
+
+    override fun cancelBtnEvent() {
+        Log.d(TAG, "cancelBtnEvent: called")
+        dialog.dismiss()
+    }
+    override fun saveBtnEvent(diary: Diary) {
+        Log.d(TAG, "saveBtnEvent: called")
+        viewModel.updateTodo(diary)
+        dialog.dismiss()
+        viewModel.initDiary()
     }
 
 

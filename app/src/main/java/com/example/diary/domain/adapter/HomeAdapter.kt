@@ -10,7 +10,6 @@ import com.example.diary.model.entity.Diary
 import com.example.diary.utiles.Utiles.Companion.timeDisplay
 import com.example.diary.databinding.ItemHomeBinding
 import com.example.diary.domain.activity.HomeClickListener
-import com.example.diary.domain.activity.diaryDialog
 
 
 class HomeAdapter(

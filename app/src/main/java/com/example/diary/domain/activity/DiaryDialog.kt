@@ -20,8 +20,16 @@ class DiaryDialog(
         super.onCreate(savedInstanceState)
         binding = DialogDiaryBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         Log.d(TAG, "onCreate: called")
+        initSetting()
         initClickEvent()
+    }
+    fun initSetting() {
+        with(binding) {
+            editEditTitle.hint = diary.title
+            editEditContent.hint = diary.content
+        }
     }
     fun initClickEvent() {
         with(binding) {

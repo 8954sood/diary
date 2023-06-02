@@ -78,8 +78,8 @@ class AddFragment(private val repository: DiaryRepository
             )
             Log.d(TAG, "diarySave: 세이브 성공")
             // 프레그먼트단에서 처리해서그런가, 바텀네비게이션이 이동하지않음
-            val homeFragment = HomeFragment.newInstance(requireContext())
-            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.content_frame, homeFragment).commit()
+//            val homeFragment = HomeFragment.newInstance(requireContext())
+//            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.content_frame, homeFragment).commit()
             val Nav = requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav)
             Nav.selectedItemId = R.id.menu_home
 

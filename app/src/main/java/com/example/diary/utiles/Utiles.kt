@@ -1,10 +1,16 @@
 package com.example.diary.utiles
 
+import android.icu.text.SimpleDateFormat
+import java.util.*
 import java.util.concurrent.TimeUnit
 
 class Utiles {
     companion object {
         const val TAG = "로그"
+        fun getCurrentDate(currentTimeMillis: Long): String {
+            val dateFormat = SimpleDateFormat("yyyy년 MM월 dd일", Locale.getDefault())
+            return dateFormat.format(currentTimeMillis)
+        }
         fun timeDisplay(createTime: Long): String? {
             val currentTime = System.currentTimeMillis()
             val difference = currentTime - createTime

@@ -10,6 +10,7 @@ import com.example.diary.model.entity.Diary
 import com.example.diary.utiles.Utiles.Companion.timeDisplay
 import com.example.diary.databinding.ItemHomeBinding
 import com.example.diary.domain.activity.HomeClickListener
+import com.example.diary.utiles.Utiles.Companion.getCurrentDate
 
 
 class HomeAdapter(
@@ -28,7 +29,7 @@ class HomeAdapter(
         if (diaryList != null && position < diaryList.size) {
             val diary = diaryList[position]
             holder.setTitle(diary.title!!)
-            holder.setCrateAt(timeDisplay(diary.createAt))
+            holder.setCrateAt(getCurrentDate(diary.createAt))
             holder.initItemClickListener(diary, position)
         }
 //        if (diary != null && position < diary.size)

@@ -14,9 +14,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.diary.R
 import com.example.diary.databinding.FragmentHomeBinding
-import com.example.diary.domain.activity.DiaryClickListner
-import com.example.diary.domain.activity.HomeClickListener
-import com.example.diary.domain.activity.DiaryDialog
+import com.example.diary.domain.activity.*
 import com.example.diary.domain.adapter.HomeAdapter
 import com.example.diary.model.db.DiaryDataBase
 import com.example.diary.model.entity.Diary
@@ -31,7 +29,7 @@ import com.example.diary.viewModel.HomeViewModel
 
 class HomeFragment(
     private val repository: DiaryRepository
-) : Fragment(), HomeClickListener, DiaryClickListner { // 프래그먼트의 UI와 동작을 구현합니다.
+) : Fragment(), HomeClickListener, DiaryClickListner, DeleteClickListner { // 프래그먼트의 UI와 동작을 구현합니다.
 
     companion object {
         const val TAG : String = "로그"
@@ -104,6 +102,14 @@ class HomeFragment(
         dialog.show()
     }
 
+    override fun onDeleteBtnClick(diary: Diary, position: Int) {
+        //다이어로그 표시, 정말 삭제 질문, 그후 삭제
+        Log.d(TAG, "onDeleteBtnClick: called")
+        var deleteDialogs = DeleteDialog(context = requireContext(), diary = diary, listener = this)
+        deleteDialogs.show()
+
+    }
+
     override fun cancelBtnEvent() {
         Log.d(TAG, "cancelBtnEvent: called")
         dialog.dismiss()
@@ -112,6 +118,11 @@ class HomeFragment(
         Log.d(TAG, "saveBtnEvent: called")
         viewModel.updateTodo(diary)
         dialog.dismiss()
+        viewModel.initDiary()
+    }
+
+    override fun DeleteBtnEvent(diary: Diary, position: Int) {
+        viewModel.deleteTodo(diary, position)
         viewModel.initDiary()
     }
 

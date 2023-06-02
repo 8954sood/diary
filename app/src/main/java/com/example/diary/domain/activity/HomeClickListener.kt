@@ -4,4 +4,5 @@ import com.example.diary.model.entity.Diary
 
 interface HomeClickListener {
     fun onEditBtnClick(diary: Diary, position: Int)
+    fun onDeleteBtnClick(diary: Diary, position: Int)
 }

@@ -17,7 +17,7 @@ class AddViewModel(
     fun insertDiary(diary: Diary) {
         Log.d(Utiles.TAG, "insertDiary: called")
         viewModelScope.launch(Dispatchers.IO) {
-            getDiaryUseCase.update(diary)
+            diary.id = getDiaryUseCase.insert(diary)
 //            diaryList.add(diary)
         }
     }

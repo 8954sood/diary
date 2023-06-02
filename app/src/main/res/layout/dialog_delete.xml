@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="vm"
+            type="com.example.diary.viewModel.DiaryDialogViewModel" />
+    </data>
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/DeleteLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/dialog_shape"
+        android:orientation="vertical"
+        android:padding="40dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/DeleteTitle"
+            android:layout_height="wrap_content"
+            android:text="@string/deleteTitle"
+            android:textSize="30sp"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/DeleteCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/deleteCancel"
+                android:textSize="20sp"
+                android:layout_marginStart="10dp"/>
+            <Button
+                android:id="@+id/DeleteYes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/deleteYes"
+                android:textSize="20sp"
+                android:layout_marginStart="10dp"/>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+</layout>

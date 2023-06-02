@@ -62,6 +62,7 @@ class HomeAdapter(
                 }
                 btnDelete.setOnClickListener {
                     Log.d(TAG, "initItemClickListener: delete called")
+                    clickListener.onDeleteBtnClick(diary, position)
 
                 }
             }

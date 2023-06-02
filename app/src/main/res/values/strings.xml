@@ -10,4 +10,7 @@
     <string name="editTitle">일기장 수정</string>
     <string name="editSave">저장하기</string>
     <string name="editCancel">취소하기</string>
+    <string name="deleteCancel">취소하기</string>
+    <string name="deleteYes">확인하기</string>
+    <string name="deleteTitle">정말로 삭제하시겠습니까?</string>
 </resources>

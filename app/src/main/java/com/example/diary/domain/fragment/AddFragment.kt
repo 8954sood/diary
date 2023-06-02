@@ -19,6 +19,7 @@ import com.example.diary.model.repository.DiaryRepository
 import com.example.diary.usecase.diary.GetLocalDiaryUseCase
 import com.example.diary.usecase.factory.AddViewModelFactory
 import com.example.diary.viewModel.AddViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class AddFragment(private val repository: DiaryRepository
 ) : Fragment() { // 프래그먼트의 UI와 동작을 구현합니다.
@@ -76,6 +77,12 @@ class AddFragment(private val repository: DiaryRepository
                 createAt = System.currentTimeMillis())
             )
             Log.d(TAG, "diarySave: 세이브 성공")
+            // 프레그먼트단에서 처리해서그런가, 바텀네비게이션이 이동하지않음
+            val homeFragment = HomeFragment.newInstance(requireContext())
+            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.content_frame, homeFragment).commit()
+            val Nav = requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav)
+            Nav.selectedItemId = R.id.menu_home
+
             
 
         }

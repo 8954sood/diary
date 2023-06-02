@@ -25,6 +25,7 @@ class MainActivity() : AppCompatActivity(), NavigationBarView.OnItemSelectedList
         Log.d("로그", "MainActivity - onCreate() Called")
         binding.bottomNav.setOnItemSelectedListener(this)
 
+
         homeFragment = HomeFragment.newInstance(this)
         supportFragmentManager.beginTransaction().add(R.id.content_frame, homeFragment).commit()
 
